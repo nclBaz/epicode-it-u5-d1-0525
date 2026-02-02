@@ -26,17 +26,18 @@ public class U5d1Application {
 		// 2. Tramite metodi .getBean dell'oggetto context posso leggere i Bean dallo "scatolone" tramite NOME del Bean o tramite TIPO del Bean
 		FrontendStudent fes = ctx.getBean(FrontendStudent.class);
 		System.out.println(fes);
-		fes.answerQuestion();
+		fes.setName("Mario");
+//		fes.answerQuestion();
 
 		FrontendStudent fes2 = ctx.getBean("aldo", FrontendStudent.class);
 		System.out.println(fes2);
-		fes2.answerQuestion();
+//		fes2.answerQuestion();
 
-		FullstackStudent fss = ctx.getBean(FullstackStudent.class);
-		System.out.println(fss);
+//		FullstackStudent fss = ctx.getBean(FullstackStudent.class);
+//		System.out.println(fss);
 
-		Interviewer i = ctx.getBean(Interviewer.class);
-		i.askQuestion();
+//		Interviewer i = ctx.getBean(Interviewer.class);
+//		i.askQuestion();
 	}
 
 }

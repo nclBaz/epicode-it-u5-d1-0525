@@ -2,10 +2,9 @@ package riccardogulin.u5d1.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import riccardogulin.u5d1.entities.BackendStudent;
-import riccardogulin.u5d1.entities.FrontendStudent;
-import riccardogulin.u5d1.entities.FullstackStudent;
-import riccardogulin.u5d1.entities.Interviewer;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Scope;
+import riccardogulin.u5d1.entities.*;
 
 @Configuration
 public class ConfigClass {
@@ -34,6 +33,9 @@ public class ConfigClass {
 
 	@Bean(name = "aldo") // Opzionalmente quando dichiaro un Bean, posso assegnargli un nome,
 	// altrimenti verrà utilizzato il nome del metodo come nome
+	@Scope("prototype") // Scope è un'annotazione OPZIONALE. Se non specificato, tutti i Bean sono SINGLETON
+	// SINGLETON = in tutta l'applicazione esiste un'UNICA COPIA DELL'OGGETTO. Ogni volta che faccio .getBean() mi torna sempre lo stesso
+	// PROTOTYPE = ogni volta che uso .getBean() mi torna una NUOVA COPIA DELL'OGGETTO
 	public FrontendStudent getFEStudent() {
 		return new FrontendStudent("Aldo", "Baglio");
 	}
@@ -44,12 +46,13 @@ public class ConfigClass {
 	}
 
 	@Bean
+	@Primary
 	public FullstackStudent getFSStudent(String name) {
 		return new FullstackStudent(name, "Poretti");
 	}
 
 	@Bean
-	public Interviewer getInterviewer(FullstackStudent student) {
+	public Interviewer getInterviewer(Student student) {
 		// Si dice che il parametro student è una DIPENDENZA del Bean Interviewer
 		// Quindi Spring non solo crea oggetti ma anche va cercare di soddisfare le loro
 		// dipendenze, ricercando se nello scatolone ci siano dei Bean compatibili
