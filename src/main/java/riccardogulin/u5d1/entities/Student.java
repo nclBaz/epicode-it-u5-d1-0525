@@ -1,37 +1,20 @@
 package riccardogulin.u5d1.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
 public abstract class Student {
+	//	@Setter(AccessLevel.NONE) // Serve per eliminare il setter automatico su un campo specifico
+//	private UUID id;
 	private String name;
 	private String surname;
 
-	public Student(String name, String surname) {
-		this.name = name;
-		this.surname = surname;
-	}
-
 	public abstract void answerQuestion();
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	@Override
-	public String toString() {
-		return "Student{" +
-				"name='" + name + '\'' +
-				", surname='" + surname + '\'' +
-				'}';
-	}
 }
